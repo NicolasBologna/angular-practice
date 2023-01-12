@@ -16,6 +16,10 @@ export class ApiService {
     );
   };
 
+  public getUsers = () => {
+    return this.http.get<User[]>(this.createCompleteRoute(BASE_URL, 'User'));
+  };
+
   private createCompleteRoute = (envAddress: string, route: string) => {
     return `${envAddress}/${route}`;
   };

@@ -1,0 +1,24 @@
+@import url("./../node_modules/bootstrap/dist/css/bootstrap.css");
+@import url("./../node_modules/ag-grid-community/dist/styles/ag-grid.css");
+@import url("./../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css");
+
+.ng-invalid:not(form).ng-touched {
+  border-color: red;
+}
+
+.ng-valid:not(form).ng-touched {
+  border-color: rgb(127, 243, 127);
+}
+
+.error-message {
+  color: red;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
