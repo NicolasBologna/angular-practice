@@ -1,0 +1,73 @@
+<h1>Add New HSC User - Template Form</h1>
+<div class="page-header">
+  <h3>User Details </h3>
+</div>
+<div class="row">
+  <div class="">
+    <form (ngSubmit)="addUser()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="user-name">USER NAME *</label>
+        <input type="text" id="user-name" required maxLength=50 email class="form-control" name="UserName"
+          [(ngModel)]="model.UserName" #userNameControl="ngModel">
+        <!-- Si solo pongo #userNameControl va a hacer referencia al elemento HTML. en cambio si lo asocio al ngModel. Esto me permite por ejemplo usarlo en un if-->
+        <ng-container *ngIf="!userNameControl.valid && userNameControl.touched">
+          <p class="error-message" *ngIf="userNameControl.errors!.required"> <span class="glyphicon glyphicon-alert"
+              aria-hidden="true"></span> this field is required!</p>
+          <p class="error-message" *ngIf="userNameControl.errors!.email"> <span class="glyphicon glyphicon-alert"
+              aria-hidden="true"></span> This field should has an email format!</p>
+        </ng-container>
+      </div>
+      <div class="form-group">
+        <label for="user-status">USER STATUS *</label>
+        <select id="user-status" required class="form-control" name="Status" [(ngModel)]="model.Status">
+          <option [value]="status" *ngFor="let status of possibleStatus">{{status}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="first-name">FIRST NAME *</label>
+        <input type="text" id="first-name" required maxLength=25 [startsWithCapital]="true" class="form-control"
+          name="FirstName" [(ngModel)]="model.FirstName" #firstNameControl="ngModel">
+        <ng-container *ngIf="!firstNameControl.valid && firstNameControl.touched">
+          <p class="error-message" *ngIf="firstNameControl.errors!.required"> <span class="glyphicon glyphicon-alert"
+              aria-hidden="true"></span> this field is required!</p>
+          <p class="error-message" *ngIf="firstNameControl.errors!.startsWithCapital"> <span
+              class="glyphicon glyphicon-alert" aria-hidden="true"></span> this field should start with capital
+            letter!
+          </p>
+        </ng-container>
+      </div>
+      <div class="form-group">
+        <label for="last-name">LAST NAME *</label>
+        <input type="text" id="last-name" required maxLength=25 [startsWithCapital]="true" class="form-control"
+          name="LastName" [(ngModel)]="model.LastName" #lastNameControl="ngModel">
+        <ng-container *ngIf="!lastNameControl.valid && lastNameControl.touched">
+          <p class="error-message" *ngIf="lastNameControl.errors!.required"> <span class="glyphicon glyphicon-alert"
+              aria-hidden="true"></span> this field is required!</p>
+          <p class="error-message" *ngIf="lastNameControl.errors!.startsWithCapital"> <span
+              class="glyphicon glyphicon-alert" aria-hidden="true"></span> this field should start with capital
+            letter!
+          </p>
+        </ng-container>
+      </div>
+      <div class="form-group">
+        <label for="last-name">DISPLAY NAME *</label>
+        <input type="text" id="last-name" required class="form-control" name="DisplayName"
+          [(ngModel)]="model.DisplayName" #displayNameControl="ngModel">
+        <ng-container *ngIf="!displayNameControl.valid && displayNameControl.touched">
+          <p class="error-message" *ngIf="displayNameControl.errors!.required"> <span class="glyphicon glyphicon-alert"
+              aria-hidden="true"></span> this field is required!</p>
+        </ng-container>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="allow-manage-hsc-users" name="AllowManageHSCUsers"
+          [(ngModel)]="model.AllowManageHSCUsers">
+        <label class="form-check-label" for="allow-manage-hsc-users">ALLOW MANAGE HSC USERS</label>
+      </div>
+      <a (click)="clearInputs()" class="">Clear</a>
+      <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Add User</button>
+    </form>
+  </div>
+</div>
+
+<pre>{{model | json}}</pre>
+<!-- <p>{{userNameControl.className}}</p> -->
