@@ -12,6 +12,7 @@ import { StartsWithCapitalValidatorDirective } from './components/directives/sta
 import { CreateUserReactiveFormBuilderComponent } from './components/user/create-user-reactive-form-builder.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { UserListComponent } from './components/user/user-list.component';
+import { EditRemoveUserRenderer } from './components/user/edit-remove-user-renderer.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,13 @@ import { UserListComponent } from './components/user/user-list.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([EditRemoveUserRenderer]),
     RouterModule.forRoot([
       { path: 'template', component: CreateUserTemplateFormComponent },
       { path: 'reactive', component: CreateUserReactiveFormComponent },
       { path: 'builder', component: CreateUserReactiveFormBuilderComponent },
       { path: 'grid', component: UserListComponent },
+      { path: '**', component: CreateUserTemplateFormComponent },
     ]),
   ],
   providers: [],

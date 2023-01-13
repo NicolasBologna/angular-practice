@@ -20,7 +20,6 @@ export class CreateUserTemplateFormComponent {
     private readonly changeDetectorRef: ChangeDetectorRef
   ) {}
   addUser() {
-    console.log(this.model);
     this.apiService.createUser(this.model).subscribe({
       next: (user: User) => {
         console.log(user);
